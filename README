@@ -1,0 +1,14 @@
+This Android app is a port of the old Tyrian vertical shoot-em-up, originally
+written in TurboPascal for DOS.
+This project is licensed under GPLv2, for further licensing information see the
+LICENSE file.
+
+Build Instructions:
+Import project into Eclipse, since I have not created Ant makefiles for this project.
+For help building the opentyrian C library, please consult the INSTALL file. 
+
+Known Issues:
+None yet.
+
+This project uses opentyrian from http://code.google.com/p/opentyrian
+originally ported from TurboPascal by the opentyrian team
