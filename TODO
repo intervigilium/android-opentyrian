@@ -1,0 +1,11 @@
+There are a lot of things left to do, and many features to add. 
+
+To Do:
+Write Android.mk for opentyrian library.
+Remove SDL from opentyrian library.
+Add Java input controller to replace SDL input.
+Add Java graphics controller to replace SDL input.
+Add Java sound controller to replace SDL input.
+Write downloader to download and unpack Tyrian data files.
+Graphics overlay for controls.
+Fix Tyrian icon sizing for multiple display types.
