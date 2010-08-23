@@ -1,4 +1,4 @@
-/*  Tyrian.java
+/*  GameView.java
  	Android port of the awesome vertical scroller Tyrian
  	
     Copyright (c) 2010  Ethan Chen
@@ -20,47 +20,42 @@
 
 package com.intervigil.tyrian;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
+import android.content.Context;
+import android.opengl.GLSurfaceView;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 
-public class Tyrian extends Activity {
+public class GameView extends GLSurfaceView {
+
+	private GameRenderer mRenderer;
 	
-	private static final String OPENTYRIAN_LIB = "opentyrian";
-	
-	private GameView mGLSurfaceView;
-	
-	static {
-		System.loadLibrary(OPENTYRIAN_LIB);
+	public GameView(Context context) {
+		super(context);
+		mRenderer = new GameRenderer();
+		setRenderer(mRenderer);
 	}
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-    	Log.i("Tyrian", "onCreate()");
-        super.onCreate(savedInstanceState);
-        
-        mGLSurfaceView = new GameView(Tyrian.this);
-        setContentView(mGLSurfaceView);
+
+	@Override
+    public boolean onTrackballEvent(MotionEvent event) {
+    	return false;
     }
     
     @Override
-    protected void onDestroy() {
-    	Log.i("Tyrian", "onDestroy()");
-    	super.onDestroy();
+    public boolean onTouchEvent(MotionEvent event) {
+    	return false;
     }
     
     @Override
-    protected void onPause() {
-    	Log.i("Tyrian", "onPause()");
-    	super.onPause();
-    	mGLSurfaceView.onPause();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    	nativeHandleKeyEvent(keyCode);
+    	return true;
     }
     
     @Override
-    protected void onResume() {
-    	Log.i("Tyrian", "onResume()");
-    	super.onResume();
-    	mGLSurfaceView.onResume();
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+    	nativeHandleKeyEvent(keyCode);
+    	return true;
     }
+    
+    private static native void nativeHandleKeyEvent(int keyCode);
 }
